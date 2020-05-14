@@ -1,52 +1,52 @@
-name: Demo app tests
+# name: Demo app tests
 
-on: [push]
+# on: [push]
 
-jobs:
-  build:
-    strategy:
-      matrix:
-        python-version: [3.6, 3.7]
-      fail-fast: false
-    env:
-      SCOPE_DSN: ${{ secrets.SCOPE_DSN }}
-      DB_PASS: password
-      DB_NAME: pythondemoapp
-      DB_USER: db_user_demo_app
-      DB_HOST: localhost
-      DB_PORT: 5432
-    runs-on: ubuntu-latest
-    services:
-      postgres:
-        image: postgres:11.5
-        env:
-          POSTGRES_USER: db_user_demo_app
-          POSTGRES_PASSWORD: password
-          POSTGRES_DB: pythondemoapp
-        ports:
-          - 5432:5432
-    steps:
-      - uses: actions/checkout@v1
-      - uses: actions/setup-python@v1
-        with:
-          python-version: ${{ matrix.python-version }}
-      - name: Install dependencies
-        run: pip install -r requirements.txt
-      - name: Run Django tests
-        uses: undefinedlabs/scope-for-python-action@v1
-        continue-on-error: true
-        with:
-          dsn: ${{secrets.SCOPE_DSN}}
-          command: python manage.py test
-      - name: Run unittest Tests
-        uses: undefinedlabs/scope-for-python-action@v1
-        continue-on-error: true
-        with:
-          dsn: ${{secrets.SCOPE_DSN}}
-          command: python -m unittest api/tests_unittest.py
-      - name: Run pytest Tests
-        uses: undefinedlabs/scope-for-python-action@v1
-        continue-on-error: true
-        with:
-          dsn: ${{secrets.SCOPE_DSN}}
-          command: pytest api/tests_pytest.py
+# jobs:
+#   build:
+#     strategy:
+#       matrix:
+#         python-version: [3.6, 3.7]
+#       fail-fast: false
+#     env:
+#       SCOPE_DSN: ${{ secrets.SCOPE_DSN }}
+#       DB_PASS: password
+#       DB_NAME: pythondemoapp
+#       DB_USER: db_user_demo_app
+#       DB_HOST: localhost
+#       DB_PORT: 5432
+#     runs-on: ubuntu-latest
+#     services:
+#       postgres:
+#         image: postgres:11.5
+#         env:
+#           POSTGRES_USER: db_user_demo_app
+#           POSTGRES_PASSWORD: password
+#           POSTGRES_DB: pythondemoapp
+#         ports:
+#           - 5432:5432
+#     steps:
+#       - uses: actions/checkout@v1
+#       - uses: actions/setup-python@v1
+#         with:
+#           python-version: ${{ matrix.python-version }}
+#       - name: Install dependencies
+#         run: pip install -r requirements.txt
+#       - name: Run Django tests
+#         uses: undefinedlabs/scope-for-python-action@v1
+#         continue-on-error: true
+#         with:
+#           dsn: ${{secrets.SCOPE_DSN}}
+#           command: python manage.py test
+#       - name: Run unittest Tests
+#         uses: undefinedlabs/scope-for-python-action@v1
+#         continue-on-error: true
+#         with:
+#           dsn: ${{secrets.SCOPE_DSN}}
+#           command: python -m unittest api/tests_unittest.py
+#       - name: Run pytest Tests
+#         uses: undefinedlabs/scope-for-python-action@v1
+#         continue-on-error: true
+#         with:
+#           dsn: ${{secrets.SCOPE_DSN}}
+#           command: pytest api/tests_pytest.py
