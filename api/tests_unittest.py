@@ -1,4 +1,5 @@
 import unittest
+from .utils import my_mean
 
 
 class TestStringMethods(unittest.TestCase):
@@ -14,6 +15,9 @@ class TestStringMethods(unittest.TestCase):
         self.assertEqual(s.split(), ['hello', 'world', 'yeah'])
         with self.assertRaises(TypeError):
             s.split(2)
+
+    def test_my_mean(self):
+        self.assertEqual(my_mean([]), 0)
 
     @unittest.skip("demonstrating skipping")
     def test_skipped_unittest(self):
