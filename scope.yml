@@ -13,3 +13,5 @@ code_path:
   enabled: true
 runner:
   enabled: true
+  exclude_branches:
+    - master
