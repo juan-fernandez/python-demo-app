@@ -2,7 +2,7 @@
 
 # Python Demo App
 
-Demo project for Python server application.
+Demo project for Python server application
 
 ## Getting Started
 
