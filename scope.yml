@@ -9,3 +9,7 @@ instrumentation:
 metadata:
   extra: value
   more: value2
+code_path:
+  enabled: true
+runner:
+  enabled: true
